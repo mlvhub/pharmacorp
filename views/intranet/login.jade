@@ -1,10 +1,16 @@
-h1 Login
+doctype 5
+html
+	head
+		title Pharma Corp Intranet
+		link(href="/stylesheets/bootstrap.min.css", rel="stylesheet")
+		link(href="/stylesheets/signin.css", rel="stylesheet")
+		
+	body
+		.container
+			h2 #{error}
 
-h2 #{error}
-
-form(method="POST", action="/intranet")
-	p Email:
-		input#email(type="email", name="email")
-	p Password:
-		input#password(type="password", name="password")
-	p: button(type="submit") Ingresar
+			form.form-signin(method="POST", action="/intranet")
+				h2.form-signin-heading Ingrese sus datos
+				p: input.form-control(type="email", name="email", placeholder="Correo Eletrónico")
+				p: input.form-control(type="password", name="password", placeholder="Contraseña")
+				p: button.btn.btn-large.btn-default.btn-block(type="submit") Ingresar

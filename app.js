@@ -20,7 +20,7 @@ app.engine('html', require('ejs').renderFile);
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/public'));
 
 mongoose.connect("mongodb://localhost/pharmaCorp");
 
@@ -93,24 +93,24 @@ app.get("/investigaciones/crear", function(req, res){
 	res.render("investigaciones/crearInvestigacion");
 });
 
-app.get("/Contacto/Contacto", function(req, res){
-	res.render("Contacto/Contacto.html");
+app.get("/contacto/contacto", function(req, res){
+	res.render("contacto/contacto.html");
 });
 
-app.get("/Inicio/index", function(req, res){
-	res.render("Inicio/index.html");
+app.get("/inicio/index", function(req, res){
+	res.render("inicio/index.html");
 });
 
-app.get("/Inicio/ingreso", function(req, res){
-	res.render("Inicio/ingreso.html");
+app.get("/inicio/ingreso", function(req, res){
+	res.render("inicio/ingreso.html");
 });
 
-app.get("/investigaciones/Investigaciones", function(req, res){
-	res.render("investigaciones/Investigaciones.html");
+app.get("/investigaciones/investigaciones", function(req, res){
+	res.render("investigaciones/investigaciones.html");
 });
 
-app.get("/reglamentos/Reglamentos", function(req, res){
-	res.render("reglamentos/Reglamentos.html");
+app.get("/reglamentos/reglamentos", function(req, res){
+	res.render("reglamentos/reglamentos.html");
 });
 
 
