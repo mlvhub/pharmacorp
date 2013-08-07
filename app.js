@@ -15,6 +15,8 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
+app.engine('html', require('jade').__express);
+
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
@@ -32,11 +34,57 @@ var ResearchSchema = new mongoose.Schema({
 }),
 	Researches = mongoose.model("Researches", ResearchSchema);
 
+var UserSchema = new mongoose.Schema({
+	email: String,
+	password: String
+}),
+	Users = mongoose.model("Users", UserSchema);
+
+// INDEX
+app.get("/intranet/index", function(req, res){
+	res.render("intranet/index");
+});
+
+// LOGIN FORM
+app.get("/intranet", function(req, res){
+	res.render("intranet/login");
+});
+
+// LOGIN
+app.post("/intranet", function(req, res){
+	Users.find({ email: req.body.email, password: req.body.password }, function(err, docs){
+		if(err) res.render("intranet/login", {error: err});
+		console.log(docs.length);
+		if(docs.length > 0){
+			res.redirect("/intranet/index");
+		}else{
+			res.render("intranet/login", {error: "Credenciales incorrectos."});
+		}
+	});
+});
+
 // INDEX
 app.get("/investigaciones", function(req, res){
 	Researches.find({}, function(err, docs) {
 		if(err) res.redirect("/error");
 		res.render("investigaciones/index", { researches: docs });
+	});
+});
+
+// NEW
+app.get("/usuarios/crear", function(req, res){
+	res.render("usuarios/new");
+});
+
+// CREATE
+app.post("/usuarios", function(req, res){
+	var b = req.body;
+	new Users({
+		email: b.email,
+		password: b.password
+	}).save(function(err, user){
+		if(err) res.json(err);
+		res.redirect("/usuarios/"+user.email);
 	});
 });
 
