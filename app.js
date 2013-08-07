@@ -5,9 +5,8 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , mongoose = require('mongoose');
 
 var app = express();
 
@@ -15,20 +14,88 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.favicon());
-app.use(express.logger('dev'));
+
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + 'public'));
 
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
+mongoose.connect("mongodb://localhost/pharmaCorp");
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+
+var ResearchSchema = new mongoose.Schema({
+	id: Number,
+	author_name: String,
+	title: String,
+	desc : String
+}),
+	Researches = mongoose.model("Researches", ResearchSchema);
+
+// INDEX
+app.get("/investigaciones", function(req, res){
+	Researches.find({}, function(err, docs) {
+		if(err) res.redirect("/error");
+		res.render("investigaciones/index", { researches: docs });
+	});
+});
+
+// NEW
+app.get("/investigaciones/crear", function(req, res){
+	res.render("investigaciones/new");
+});
+
+// CREATE
+app.post("/investigaciones", function(req, res){
+	var b = req.body;
+	new Researches({
+		id: b.id,
+		author_name: b.author_name,
+		title: b.title,
+		desc: b.description
+	}).save(function(err, research){
+		if(err) res.json(err);
+		res.redirect("/investigaciones/"+research.id);
+	});
+});
+
+app.param("id", function(req, res, next, id){
+	Researches.find({id: id}, function(err, docs){
+		req.research = docs[0];
+		next();
+	});
+}); 
+
+// SHOW
+app.get("/investigaciones/:id", function(req, res){
+	res.render("investigaciones/show", { research: req.research });
+});
+
+// SHOW
+app.get("/investigaciones/:id/editar", function(req, res){
+	res.render("investigaciones/edit", { research: req.research });
+});
+
+// UPDATE
+
+app.put("/investigaciones/:id", function(req, res){
+	var b = req.body;
+	Researches.update(
+		{ id: req.params.id },
+		{ id: b.id, title: b.title, desc: b.description },
+		function(err) {
+			res.redirect("/investigaciones/" + b.id);
+		}
+	);
+});
+
+
+// DESTROY
+app.delete("/investigaciones/:id", function(req, res){
+	Researches.remove({id: req.params.id}, function(err){
+		res.redirect("/investigaciones");
+	});
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

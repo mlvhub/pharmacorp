@@ -1,0 +1,12 @@
+h1 Crear Investigacion
+
+form(method="POST", action="/investigaciones")
+	p Id:
+		input#id(type="number", name="id")
+	p Author's Name:
+		input#id(type="text", name="author_name")
+	p Title:
+		input#title(type="text", name="title")
+	p Description:
+		textarea#description(name="description")
+	p: button(type="submit") Crear

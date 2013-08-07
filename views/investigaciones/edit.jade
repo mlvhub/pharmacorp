@@ -1,0 +1,13 @@
+h1 Editar Investigacion
+
+form(method="POST", action="/investigaciones/#{research.id}")
+	input(type="hidden", name="_method", value="PUT")
+	p Id:
+		input#id(type="number", name="id", value="#{research.id}")
+	p Author's Name:
+		input#id(type="text", name="author_name", value="#{research.author_name}")
+	p Title:
+		input#title(type="text", name="title", value="#{research.title}")
+	p Description:
+		textarea#description(name="description") #{research.desc}
+	p: button(type="submit") Editar
