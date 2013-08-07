@@ -27,6 +27,8 @@ process.env.MONGOLAB_URI ||
 process.env.MONGOHQ_URL || 
 'mongodb://localhost/pharmaCorp';
 
+mongoose.connect( uristring );
+
 app.get('/', routes.index);
 
 var ResearchSchema = new mongoose.Schema({
