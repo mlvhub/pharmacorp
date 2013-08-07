@@ -1,0 +1,11 @@
+h1 #{research.title}
+h2 #{research.author_name}
+
+p #{research.desc}
+
+ul
+	li: a(href="/investigaciones/#{research.id}/editar") Editar
+	li
+		form(action="/investigaciones/#{research.id}", method="POST")
+			input(type="hidden", name="_method", value="DELETE")
+			button(type="submit") Eliminar
