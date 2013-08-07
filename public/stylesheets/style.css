@@ -1,8 +1,7 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.hover-menu:hover{
+	color : #B00B0B;
 }
 
-a {
-  color: #00B7FF;
+.font-color{
+	color : #B00B0B;
 }

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Contacto</title>
+  <!-- Bootstrap core CSS -->
+    <link href="../public/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+   <style>
+        html, body, #map-canvas {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+        }
+      </style>
+       <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+        var map;
+        function initialize() {
+          var mapOptions = {
+            zoom: 8,
+            center: new google.maps.LatLng(-34.397, 150.644),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          map = new google.maps.Map(document.getElementById('map-canvas'),
+              mapOptions);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+    </head>
+
+  <body>
+
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <a class="navbar-brand hover-menu" href="../Inicio/index.html">Pharma Corp</a>
+            <div class="nav-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="Inicio/index">Inicio</a></li>
+                <li><a href="investigaciones/investigaciones">Investigaciones</a></li>
+                <li><a href="reglamentos/Reglamentos">Reglamentos</a></li>
+                <li><a href="Contacto/Contacto">Contacto</a></li>
+                <li><a href="Inicio/ingreso">Ingreso</a></li> 
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="container">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div style = "margin-top:5px;"> <h1>Contacto</h1>
+    </div>
+   
+
+<!--       <div class="body-content"> -->
+
+<div style= "float: left">
+  <div id="map-canvas" style = "width:600px; height : 500px;  margin-left:5px;" ></div>
+</div>
+
+<div style = "float: right; width: 550px; height: 300px; margin-right:0 margin-top:10px;">
+
+  <div class="container-fluid">
+          <div class="accordion" id="accordion2">
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"  >
+                              <p style="font-size:13.5px;">
+                              Oficinas Corporativas
+                              </p>
+                </a>
+              </div>
+              <div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
+                <div class="accordion-inner">
+                        <p style="font-size:13.5px;line-height:20px;">
+                        
+                        <ul>
+                          <li>New Jersey</li>
+                          <li>
+                              <address>
+                                <strong>Estados Unidos</strong><br>
+                                795 Folsom Ave, Suite 600<br>
+                                New Jersey, CA 94107<br>
+                                <abbr title="Tel">Tel:</abbr> (+1) 757-224-0177 
+                                 <a href="mailto:#">info@pharmacorp.com</a>
+                              </address>
+
+                          </li>
+
+
+
+                        </ul>
+                        </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                      <p style="font-size:13.5px;">
+                        Sitios de Investigación
+
+                      </p>
+                </a>
+              </div>
+              <div id="collapseTwo" class="accordion-body collapse">
+                <div class="accordion-inner">
+                      <p style="font-size:13.5px;line-height:20px;">
+                       <ul>
+                          <li>Estados Unidos</li>
+                          <li>Alemania</li>
+                          <li>Francia</li>
+                          <li>Gran Bretaña</li>
+                          <li>Austria</li>
+                          <li>Suiza</li>
+                        </ul>
+                      </p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree">
+                      <p style="font-size:13.5px;">
+                       Puntos de Distribución
+                      </p>
+                </a>
+              </div>
+              <div id="collapseThree" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <p style="font-size:13.5px;line-height:20px;">
+                    <ul>
+                      <li>Este y Sur de África</li>
+                      <li>Medio Oriente</li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div><!--fin collapse-->
+
+
+
+</div>
+
+  
+        
+        <footer style = "clear: both;">
+          <p>&copy; Pharma Corp 2013</p>
+        </footer>
+     <!--  </div> -->
+
+    </div> <!-- /container -->
+
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    
+    
+  </body>
+</html>

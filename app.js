@@ -42,8 +42,29 @@ app.get("/investigaciones", function(req, res){
 
 // NEW
 app.get("/investigaciones/crear", function(req, res){
-	res.render("investigaciones/new");
+	res.render("investigaciones/crearInvestigacion");
 });
+
+app.get("/Contacto/Contacto", function(req, res){
+	res.render("Contacto/Contacto.html");
+});
+
+app.get("/Inicio/index", function(req, res){
+	res.render("Inicio/index.html");
+});
+
+app.get("/Inicio/ingreso", function(req, res){
+	res.render("Inicio/ingreso.html");
+});
+
+app.get("/investigaciones/Investigaciones", function(req, res){
+	res.render("investigaciones/Investigaciones.html");
+});
+
+app.get("/reglamentos/Reglamentos", function(req, res){
+	res.render("reglamentos/Reglamentos.html");
+});
+
 
 // CREATE
 app.post("/investigaciones", function(req, res){
