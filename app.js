@@ -22,7 +22,10 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
 
-mongoose.connect("mongodb://localhost/pharmaCorp");
+var uristring = 
+process.env.MONGOLAB_URI || 
+process.env.MONGOHQ_URL || 
+'mongodb://localhost/pharmaCorp';
 
 app.get('/', routes.index);
 
