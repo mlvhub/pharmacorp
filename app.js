@@ -50,13 +50,23 @@ app.get("/intranet", function(req, res){
 	res.render("intranet/login");
 });
 
+// LOGIN FORM
+app.get("/intranet/salir", function(req, res){
+	res.redirect("inicio/index");
+});
+
+// LOGIN FORM
+app.get("/intranet/investigaciones/crear", function(req, res){
+	res.render("investigaciones/new");
+});
+
 // LOGIN
 app.post("/intranet", function(req, res){
 	Users.find({ email: req.body.email, password: req.body.password }, function(err, docs){
 		if(err) res.render("intranet/login", {error: err});
 		console.log(docs.length);
 		if(docs.length > 0){
-			res.redirect("/intranet/index");
+			res.redirect("/intranet/investigaciones/crear");
 		}else{
 			res.render("intranet/login", {error: "Credenciales incorrectos."});
 		}
@@ -106,7 +116,7 @@ app.get("/inicio/ingreso", function(req, res){
 });
 
 app.get("/investigaciones/investigaciones", function(req, res){
-	res.render("investigaciones/investigaciones.html");
+	res.redirect("/investigaciones");
 });
 
 app.get("/reglamentos/reglamentos", function(req, res){

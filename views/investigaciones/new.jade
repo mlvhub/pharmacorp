@@ -1,12 +1,33 @@
-h1 Crear Investigacion
+doctype 5
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+		link(rel='stylesheet', href='/stylesheets/jumbotron.css')
+	body
+		.navbar-wrapper
+			.container
+				.navbar.navbar-inverse.navbar-static-top
+					.container
+						button.navbar-toggle(data-toggle="collapse", data-target=".nav-collapse")
+							span.icon-bar
+							span.icon-bar
+							span.icon-bar
+						a.navbar-brand.hover-menu(href="/inicio/index") PharmaCorp
+						.nav-collapse.collapse
+							ul.nav.navbar-nav
+								li: a(href="/intranet/investigaciones/crear") Crear Investigaciones
+								li: a(href="/intranet/salir") Salir
+		.container
+			h1 Crear Investigacion
 
-form(method="POST", action="/investigaciones")
-	p Id:
-		input#id(type="number", name="id")
-	p Author's Name:
-		input#id(type="text", name="author_name")
-	p Title:
-		input#title(type="text", name="title")
-	p Description:
-		textarea#description(name="description")
-	p: button(type="submit") Crear
+			form(method="POST", action="/investigaciones")
+				p Id:
+					input#id(type="number", name="id")
+				p Author's Name:
+					input#author_name(type="text", name="author_name")
+				p Title:
+					input#title(type="text", name="title")
+				p Description:
+					textarea#description(name="description")
+				p: button.btn.btn-default(type="submit") Crear
